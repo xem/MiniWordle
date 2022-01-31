@@ -1,6 +1,6 @@
 <tt>
 <h2>Mini Wordle</h2>
-A Wordle clone in 362 bytes
+A Wordle clone in 338 bytes
 <br>(not counting the words list)
 <br><a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 <br>
@@ -40,30 +40,21 @@ i.onkeyup = e => {
     // Reset feedback colors
     f = [0,0,0,0,0];
     
-    // Copy the right word
+    // Copy the right word and convert it to an array
     c = [...w];
     
     // Green pass
     for(l in v){
       if(w[l] == v[l]) {
         f[l] = 595;
-        c[l] = "";
+        c[l] = 0;
       }
-    }
-      
-    // Yellow pass
-    for(l in v){
-      if(!f[l] && ~(x = c.indexOf(v[l]))){
+      else if(~(x = c.indexOf(v[l])) && c[x] != v[x]){
         f[l] = 985;
-        c[x] = "";
+        c[x] = 0;
       }
+      p.innerHTML+=`<tt style='background:#${f[l]}'>&nbsp;${v[l]} </tt>&nbsp;`+(l > 3 ? `<p>` : "");
     }
-    
-    for(l in v){
-      p.innerHTML+=`<tt style='background:#${f[l]}'>&nbsp;${v[l]} </tt>&nbsp;`;
-    }
-    
-    p.innerHTML += `<p>`;
     
     // Empty field or show win/lose message
     i.value = f.every(a => a == 595) ? ":)" : g == 1 ? ":(" :  "";
