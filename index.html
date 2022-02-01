@@ -72,7 +72,8 @@ i.onkeyup = e => {
     // Array of the input
     j=[...v];
     // Green and black pass - Mutate the input and solution to prevent matching letters again
-    for(e=5;e--;j[e]==s[e]&&(s[e]=o[j[e]=e]="🟩"))o[e]="⬛"
+    for(e=5;e--;)o[e]=j[e]==s[e]?(s[j[e]=e]="🟩"):"⬛"
+
     // Yellow pass - Mutate the solution to prevent matching letters again
     for(e=5;e--;~q&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e])
 
