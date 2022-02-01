@@ -4,17 +4,15 @@
 <body style="width: 620px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle</center></h2>
-A Wordle clone in 247 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
+A Wordle clone in 227 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
-<pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:550px;">
-&lt;input id=i>&lt;p id=p>
-&lt;script>
+<pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:600px;">
+&lt;input id=i>&lt;p id=p>&lt;script>
 W=[ /* words list */ ];
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes
-(v=i.value)){for(l in Z=[...w],v)p.innerHTML+=(l&lt;1?"&lt;br>"+v:"")+(v[
-l]==w[l]?"🟩":~(x=w.indexOf(v[l]))&&v[x]!=w[x]&&1!=Z[x]&&(Z[x]=1)?"
-🟨":"⬛");i.value=v==w?":)":--g?"":":("}}
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)
+&&(p.innerHTML+="&lt;p>"+(a=[...w]).map(((e,i)=>[..."⬛🟨🟩"][(v[i]==e)+(~(x=a.
+indexOf(v[i]))&&1!=a[x]&&(a[x]=1))]))+v,i.value=v==w?":)":--g?"":":(")}
 &lt;/script></pre>
 <br>
 <table>
@@ -28,11 +26,6 @@ l]==w[l]?"🟩":~(x=w.indexOf(v[l]))&&v[x]!=w[x]&&1!=Z[x]&&(Z[x]=1)?"
 <br>- Yellow = misplaced letter
 <br>- You have 6 guesses
 <br>- Guesses must be valid words
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -64,35 +57,18 @@ g = 6;
 // When pressing Enter
 i.onkeyup = e => {
 
-  // Ensure that the word exists, decrement guess count
-  if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
+  if(e.which == 13 && W.includes(v = i.value.toLowerCase())){  
   
-    // Make an array out of the answer's letters
-    Z = [...w];
-  
-    // Output    
-    for(l in v){
-      p.innerHTML += 
-        
-        // New line
-        (l < 1 ? ("<br>" +v) : "")
-        
-        + (
-          
-          // Green
-          (v[l] == w[l])
-          ? "🟩" 
-          
-          // Yellow if current letter is present in the solution (and hasn't be used for a green block or another yellow block)
-          : (~(x = w.indexOf(v[l])) && v[x] != w[x] && Z[x] != 1 && (Z[x] = 1))
-          ? "🟨" 
-          
-          // Black
-          : "⬛");
-    }
+    p.innerHTML += "<p>" + (a = [...w]).map(
     
-    // Empty field or show win/lose message
-    i.value = v == w ? ":)" : --g ? "" :  ":(";
+      (
+      
+        (e, i) => [..."⬛🟨🟩"][(v[i] == e) + (~(x = a.indexOf(v[i])) && a[x] != 1 && (a[x] = 1))]
+      
+      )
+    ) + v,
+    
+    i.value = v == w ? ":)" : --g ? "" : ":("
   }  
 }
 
@@ -102,7 +78,6 @@ i.onkeyup = e => {
 </tr>
 </table>
 
-<br><br>
 <br><br>
 <center><button onclick='location=location'>refresh</button>
 <br><br>2022 ~ <a href="//twitter.com/maximeeuziere">xem</a>, <a href="//twitter.com/p01">p01</a></center>
