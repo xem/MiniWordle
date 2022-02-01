@@ -4,18 +4,17 @@
 <body style="width: 620px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle</center></h2>
-A Wordle clone in 290 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
+A Wordle clone in 277bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
 <pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:550px;">
 &lt;p id=p>&lt;p>&lt;input id=i>
 &lt;script>
 W=[ /* words list */ ];
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(e.which&lt;14&&W.includes(
-v=i.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;j[e]==s[e]&&(s[e]
-=j[e]=o[e]="🟩"))o[e]="⬛";for(e=5;e--;~q&&"🟩"!=s[q]&&(s[q]=j[q]=o[
-q]="🟨"))q=j.indexOf(s[e]);p.innerHTML+="&lt;p>"+o+v,i.value=v==w?":)"
-:--g?"":":("}}
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i
+.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;j[e]==s[e]&&(s[e]=o[j[e]
+=e]="🟩"))o[e]="⬛";for(e=5;e--;~q&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[
+e]);p.innerHTML+="&lt;p>"+o+v,i.value=v==w?":)":--g?"":":("}}
 &lt;/script></pre>
 <br>
 <table>
@@ -65,7 +64,7 @@ g = 6;
 i.onkeyup = e => {
 
   // Ensure that the word exists, decrement guess count
-  if(e.which < 14 && W.includes(v = i.value.toLowerCase()) && g){
+  if(e.which == 13 && W.includes(v = i.value.toLowerCase()) && g){
     // Array for the output
     o=[];
     // Copy of the solution to match against and mutate to
@@ -73,9 +72,9 @@ i.onkeyup = e => {
     // Array of the input
     j=[...v];
     // Green and black pass - Mutate the input and solution to prevent matching letters again
-    for(e=5;e--;j[e]==s[e]&&(s[e]=j[e]=o[e]="🟩"))o[e]="⬛"
+    for(e=5;e--;j[e]==s[e]&&(s[e]=o[j[e]=e]="🟩"))o[e]="⬛"
     // Yellow pass - Mutate the solution to prevent matching letters again
-    for(e=5;e--;~q&&s[q]!="🟩"&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e])
+    for(e=5;e--;~q&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e])
 
     // Output the number of guesses left, the green/yellow/black output, and the input word
     p.innerHTML += "<p>"+o+v
