@@ -1,0 +1,1 @@
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;j[e]==s[e]&&(s[e]=j[e]=o[e]="🟩"))o[e]="⬛";for(e=5;e--;~q&&"🟩"!=s[q]&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e]);p.innerHTML+="<p>"+--g+o+v,i.value=v==w?":)":g?"":":("}}

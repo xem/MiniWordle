@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mini Wordle</title>
 <body style="width: 620px;margin: 0 auto;padding:0 10px;">
@@ -9,11 +9,11 @@ A Wordle clone in 338 bytes (not counting the words list) <a href="https://githu
 <br>
 <pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:550px;">
 W=[ /* words list */ ];
-w=W[new Date%W.length],g=7,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i
-.value)&&--g>0){for(l in f=[0,0,0,0,0],c=[...w],v)w[l]==v[l]?(f[l]=595,
-c[l]=0):~(x=c.indexOf(v[l]))&&c[x]!=v[x]&&(f[l]=985,c[x]=0),p.innerHTML
-+=`&lt;tt style='background:#${f[l]}'> ${v[l]} &lt;/tt> `+(l>3?"&lt;p>
-":"");i.value=f.every((l=>595==l))?":)":1==g?":(":""}}</pre>
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes
+(v=i.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;j[e]==s[e]&&(s[e
+]=j[e]=o[e]="🟩"))o[e]="⬛";for(e=5;e--;~q&&"🟩"!=s[q]&&(s[q]=j[q]=o
+[q]="🟨"))q=j.indexOf(s[e]);p.innerHTML+="&lt;p>"+--g+o+v,i.value=v==w
+?":)":g?"":":("}}</pre>
 <br>
 <table>
 <tr>
@@ -55,7 +55,7 @@ w = W[new Date % W.length];
 console.log(w);
 
 // 6 guesses
-g = 7;
+g = 6;
 
 // When pressing Enter
 i.onkeyup = e => {
@@ -87,4 +87,6 @@ i.onkeyup = e => {
 </table>
 
 <br><br>
-<center>2022 - <a href="//twitter.com/maximeeuziere">xem</a></center>
+<br><br>
+<center><button onclick='location=location'>refresh</button>
+<br><br>2022 ~ <a href="//twitter.com/maximeeuziere">xem</a>, <a href="//twitter.com/p01">p01</a></center>
