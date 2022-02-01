@@ -71,7 +71,6 @@ i.onkeyup = e => {
     // Green and black pass - Mutate the input and solution to prevent matching letters again
     for(e=5;e--;j[e]==s[e]&&(s[e]=j[e]=o[e]="🟩"))o[e]="⬛"
     // Yellow pass - Mutate the solution to prevent matching letters again
-    for(e=5;e--;~q&&(s[q]=o[q]="🟨"))q=s.indexOf(j[e])
     for(e=5;e--;~q&&s[q]!="🟩"&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e])
 
     // Output the number of guesses left, the green/yellow/black output, and the input word
