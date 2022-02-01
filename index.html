@@ -4,17 +4,17 @@
 <body style="width: 620px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle</center></h2>
-A Wordle clone in 277bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
+A Wordle clone in 247 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
 <pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:550px;">
-&lt;p id=p>&lt;p>&lt;input id=i>
+&lt;input id=i>&lt;p id=p>
 &lt;script>
 W=[ /* words list */ ];
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i
-.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;j[e]==s[e]&&(s[e]=o[j[e]
-=e]="🟩"))o[e]="⬛";for(e=5;e--;~q&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[
-e]);p.innerHTML+="&lt;p>"+o+v,i.value=v==w?":)":--g?"":":("}}
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes
+(v=i.value)){for(l in Z=[...w],v)p.innerHTML+=(l&lt;1?"&lt;br>"+v:"")+(v[
+l]==w[l]?"🟩":~(x=w.indexOf(v[l]))&&v[x]!=w[x]&&1!=Z[x]&&(Z[x]=1)?"
+🟨":"⬛");i.value=v==w?":)":--g?"":":("}}
 &lt;/script></pre>
 <br>
 <table>
@@ -40,6 +40,7 @@ e]);p.innerHTML+="&lt;p>"+o+v,i.value=v==w?":)":--g?"":":("}}
 <td width=300 style="vertical-align:top;padding:0 0 0 30px">
 <b>Play here:</b>
 <br>
+<br>
 
 <script>
 // Words list
@@ -47,11 +48,11 @@ W = 'which,there,their,about,would,these,other,words,could,write,first,water,aft
 </script>
 
 
-<p id=p><p><input id=i>
+<input id=i><p id=p>
 
 <script>
 
-// Word
+// Word to find
 w = W[new Date % W.length];
 
 // Temp: log the solution
@@ -64,22 +65,34 @@ g = 6;
 i.onkeyup = e => {
 
   // Ensure that the word exists, decrement guess count
-  if(e.which == 13 && W.includes(v = i.value.toLowerCase()) && g){
-    // Array for the output
-    o=[];
-    // Copy of the solution to match against and mutate to
-    s=[...w];
-    // Array of the input
-    j=[...v];
-    // Green and black pass - Mutate the input and solution to prevent matching letters again
-    for(e=5;e--;j[e]==s[e]&&(s[e]=o[j[e]=e]="🟩"))o[e]="⬛"
-    // Yellow pass - Mutate the solution to prevent matching letters again
-    for(e=5;e--;~q&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e])
-
-    // Output the number of guesses left, the green/yellow/black output, and the input word
-    p.innerHTML += "<p>"+o+v
+  if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
+  
+    // Make an array out of the answer's letters
+    Z = [...w];
+  
+    // Output    
+    for(l in v){
+      p.innerHTML += 
+        
+        // New line
+        (l < 1 ? ("<br>" +v) : "")
+        
+        + (
+          
+          // Green
+          (v[l] == w[l])
+          ? "🟩" 
+          
+          // Yellow if current letter is present in the solution (and hasn't be used for a green block or another yellow block)
+          : (~(x = w.indexOf(v[l])) && v[x] != w[x] && Z[x] != 1 && (Z[x] = 1))
+          ? "🟨" 
+          
+          // Black
+          : "⬛");
+    }
+    
     // Empty field or show win/lose message
-    i.value = v==w ? ":)" : --g ? "" :  ":(";
+    i.value = v == w ? ":)" : --g ? "" :  ":(";
   }  
 }
 
@@ -93,3 +106,4 @@ i.onkeyup = e => {
 <br><br>
 <center><button onclick='location=location'>refresh</button>
 <br><br>2022 ~ <a href="//twitter.com/maximeeuziere">xem</a>, <a href="//twitter.com/p01">p01</a></center>
+<br><br>

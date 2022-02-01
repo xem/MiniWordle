@@ -9,3 +9,7 @@ w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(e.which<14&&W.includes(v=i.value)&&g
 w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(e.which<14&&W.includes(v=i.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;j[e]==s[e]&&(s[e]=j[e]=o[e]="🟩"))o[e]="⬛";for(e=5;e--;~q&&"🟩"!=s[q]&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e]);p.innerHTML+="<p>"+o+v,i.value=v==w?":)":--g?"":":("}}
 
 w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;j[e]==s[e]&&(s[e]=o[j[e]=e]="🟩"))o[e]="⬛";for(e=5;e--;~q&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e]);p.innerHTML+="<p>"+o+v,i.value=v==w?":)":--g?"":":("}}
+
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;)o[e]=j[e]==s[e]?s[j[e]=e]="🟩":"⬛";for(e=5;e--;~q&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e]);p.innerHTML+="<p>"+o+v,i.value=v==w?":)":--g?"":":("}}
+
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i.value)){for(l in Z=[...w],v)p.innerHTML+=(l<1?"<br>"+v:"")+(v[l]==w[l]?"🟩":~(x=w.indexOf(v[l]))&&v[x]!=w[x]&&1!=Z[x]&&(Z[x]=1)?"🟨":"⬛");i.value=v==w?":)":--g?"":":("}}
