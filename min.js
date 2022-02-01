@@ -1,1 +1,1 @@
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i.value)){for(l in v)p.innerHTML+=(l<1?"<br>"+v:"")+(v[l]==w[l]?"🟩":~(x=w.indexOf(v[l]))&&v[x]!=w[x]?"🟨":"⬛");i.value=v==w?":)":--g?"":":("}}
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i.value)){for(l in Z=[...w],v)p.innerHTML+=(l<1?"<br>"+v:"")+(v[l]==w[l]?"🟩":~(x=w.indexOf(v[l]))&&v[x]!=w[x]&&1!=Z[x]&&(Z[x]=1)?"🟨":"⬛");i.value=v==w?":)":--g?"":":("}}

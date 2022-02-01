@@ -4,17 +4,17 @@
 <body style="width: 620px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle</center></h2>
-A Wordle clone in 277 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
+A Wordle clone in 247 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
 <pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:550px;">
-&lt;p id=p>&lt;p>&lt;input id=i>
+&lt;input id=i>&lt;p id=p>
 &lt;script>
 W=[ /* words list */ ];
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i
-.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;j[e]==s[e]&&(s[e]=o[j[e]
-=e]="🟩"))o[e]="⬛";for(e=5;e--;~q&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[
-e]);p.innerHTML+="&lt;p>"+o+v,i.value=v==w?":)":--g?"":":("}}
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes
+(v=i.value)){for(l in Z=[...w],v)p.innerHTML+=(l&lt;1?"&lt;br>"+v:"")+(v[
+l]==w[l]?"🟩":~(x=w.indexOf(v[l]))&&v[x]!=w[x]&&1!=Z[x]&&(Z[x]=1)?"
+🟨":"⬛");i.value=v==w?":)":--g?"":":("}}
 &lt;/script></pre>
 <br>
 <table>
@@ -67,9 +67,28 @@ i.onkeyup = e => {
   // Ensure that the word exists, decrement guess count
   if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
   
+    // Make an array out of the answer's letters
+    Z = [...w];
+  
     // Output    
     for(l in v){
-      p.innerHTML += (l < 1 ? ("<br>" +v) : "") + ((v[l] == w[l]) ? "🟩" : (~(x = w.indexOf(v[l])) && v[x] != w[x]) ? "🟨" : "⬛");
+      p.innerHTML += 
+        
+        // New line
+        (l < 1 ? ("<br>" +v) : "")
+        
+        + (
+          
+          // Green
+          (v[l] == w[l])
+          ? "🟩" 
+          
+          // Yellow if current letter is present in the solution (and hasn't be used for a green block or another yellow block)
+          : (~(x = w.indexOf(v[l])) && v[x] != w[x] && Z[x] != 1 && (Z[x] = 1))
+          ? "🟨" 
+          
+          // Black
+          : "⬛");
     }
     
     // Empty field or show win/lose message
