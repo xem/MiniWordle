@@ -4,7 +4,7 @@
 <body style="width: 620px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle</center></h2>
-A Wordle clone in 338 bytes (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
+A Wordle clone in 291 bytes (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
 <pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:550px;">
@@ -61,7 +61,7 @@ g = 6;
 i.onkeyup = e => {
 
   // Ensure that the word exists, decrement guess count
-  if(e.which == 13 && W.includes(v = i.value) && g){
+  if(e.which < 14 && W.includes(v = i.value.toLowerCase()) && g){
     // Array for the output
     o=[];
     // Copy of the solution to match against and mutate to
