@@ -9,11 +9,11 @@ A Wordle clone in 291 bytes (not counting the words list) <a href="https://githu
 <br>
 <pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:550px;">
 W=[ /* words list */ ];
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes
-(v=i.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e--;j[e]==s[e]&&(s[e
-]=j[e]=o[e]="🟩"))o[e]="⬛";for(e=5;e--;~q&&"🟩"!=s[q]&&(s[q]=j[q]=o
-[q]="🟨"))q=j.indexOf(s[e]);p.innerHTML+="&lt;p>"+--g+o+v,i.value=v==w
-?":)":g?"":":("}}</pre>
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(e.which&lt;14&&W
+.includes(v=i.value)&&g){for(o=[],s=[...w],j=[...v],e=5;e
+--;j[e]==s[e]&&(s[e]=j[e]=o[e]="🟩"))o[e]="⬛";for(e=5;e--
+;~q&&"🟩"!=s[q]&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e]);
+p.innerHTML+="&lt;p>"+o+v,i.value=v==w?":)":--g?"":":("}}</pre>
 <br>
 <table>
 <tr>
@@ -74,9 +74,9 @@ i.onkeyup = e => {
     for(e=5;e--;~q&&s[q]!="🟩"&&(s[q]=j[q]=o[q]="🟨"))q=j.indexOf(s[e])
 
     // Output the number of guesses left, the green/yellow/black output, and the input word
-    p.innerHTML += "<p>"+--g+o+v
+    p.innerHTML += "<p>"+o+v
     // Empty field or show win/lose message
-    i.value = v==w ? ":)" : g ? "" :  ":(";
+    i.value = v==w ? ":)" : --g ? "" :  ":(";
   }  
 }
 
