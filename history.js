@@ -16,4 +16,4 @@ w=W[new Date%W.length],g=6,i.onkeyup=e=>{if(13==e.which&&W.includes(v=i.value)){
 
 w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(Z=[...w],p.innerHTML+="<p>"+[...v].map(((e,i)=>[..."⬛🟨🟩"][(Z[i]!=e&&(x=Z.indexOf(e))>=0&&Z[x]!=v[x]&&(Z[x]=1))+2*(e==w[i])]))+v,i.value=v==w?":)":--g?"":":(")}
 
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(Z=[...w],p.innerHTML+="<p>"+[...v].map(((e,i)=>[..."⬛🟨🟩"][((z=Z[i]!=e)+~(x=Z.indexOf(e))&&Z[x]!=v[x]&&(Z[x]=1))+2*!z]))+v,i.value=v==w?":)":--g?"":":(")}
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(Z=[...w],p.innerHTML+="<p>"+[...v].map(((e,i)=>[..."⬛🟨🟩"][((z=Z[i]!=e)&&+~(x=Z.indexOf(e))&&Z[x]!=v[x]&&(Z[x]=1))+2*!z]))+v,i.value=v==w?":)":--g?"":":(")}
