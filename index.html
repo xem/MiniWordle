@@ -1,19 +1,18 @@
-﻿<!doctype html>
+<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mini Wordle</title>
 <body style="width: 620px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle</center></h2>
-A Wordle clone in 241 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
+A Wordle clone in 231 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
 <pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:600px;">
 &lt;input id=i>&lt;p id=p>&lt;script>
 W=[ /* words list */ ];
 w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)
-&&(Z=[...w],p.innerHTML+="&lt;p>"+[...v].map(((e,i)=>[..."⬛🟨🟩"][((z=Z[i]!=e)
-&&+~(x=Z.indexOf(e))&&Z[x]!=v[x]&&(Z[x]=1))+2*!z]))+v,i.value=v==w?":)":--g
-?"":":(")}
+&&(Z=[...w],p.innerHTML+="&lt;p>"+[...v].map((e,n)=>[..."⬛🟨🟩"][((z=Z[n]!=e)
+&&~(x=Z.indexOf(e))&&Z[x]!=v[x]&&(Z[x]=1))+2*!z])+v,i.value=v!=w&&--g?"":w)}
 &lt;/script></pre>
 <br>
 <table>
@@ -67,11 +66,11 @@ i.onkeyup = e => {
     
     p.innerHTML += "<p>" + [...v].map(
       
-      (e, i) => [..."⬛🟨🟩"][((z = Z[i] != e) && +~(x=Z.indexOf(e)) && (Z[x] != v[x]) && (Z[x] = 1)) + 2 * !z]
+      (e, i) => [..."⬛🟨🟩"][((z = Z[i] != e) && ~(x=Z.indexOf(e)) && (Z[x] != v[x]) && (Z[x] = 1)) + 2 * !z]
       
     ) + v,
     
-    i.value = v == w ? ":)" : --g ? "" : ":("
+    i.value = v != w && --g ? "" : w
   }
 }
 
