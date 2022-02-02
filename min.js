@@ -1,1 +1,1 @@
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(Z=[...w],p.innerHTML+="<p>"+[...v].map((e,n)=>[..."⬛🟨🟩"][((z=Z[n]!=e)&&~(x=Z.indexOf(e))&&Z[x]!=v[x]&&(Z[x]=1))+2*!z])+v,i.value=v!=w&&--g?"":w)}
+w=W[new Date%W.length],g=6,i.onkeyup=n=>{13==n.which&&W.includes(v=i.value)&&(Z=[...w],p.innerHTML+="<p>"+[...v].map((n,e)=>[..."⬛🟨🟩"][Z[e]==n?2:~(x=Z.indexOf(n))&&Z[x]!=v[x]&&(Z[x]=1)])+v,i.value=v!=w&&--g?"":w)}
