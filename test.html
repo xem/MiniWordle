@@ -3,7 +3,7 @@
 
 <script>
 
-W = ["boons", "acorn", "nanny", "sassy"];
+W = ["boons", "acorn", "gravy", "nanny", "sassy", "noobs"];
 
 
 /* --------- PASTE YOUR CODE HERE ----------*/
@@ -42,13 +42,17 @@ i.onkeyup = e => {
 w = "boons";
 i.value = "acorn";
 i.onkeyup({which:13});
+i.value = "gravy";
+i.onkeyup({which:13});
 i.value = "nanny";
 i.onkeyup({which:13});
 i.value = "sassy";
 i.onkeyup({which:13});
+i.value = "noobs";
+i.onkeyup({which:13});
 i.value = "boons";
 i.onkeyup({which:13});
 
-if(p.innerHTML == "<p>⬛,⬛,🟩,⬛,🟨acorn</p><p>⬛,⬛,⬛,🟩,⬛nanny</p><p>🟨,⬛,⬛,⬛,⬛sassy</p><p>🟩,🟩,🟩,🟩,🟩boons</p>") document.write("<p>TESTS OK");
+if(p.innerHTML == '<p>⬛,⬛,🟩,⬛,🟨acorn</p><p>⬛,⬛,⬛,⬛,⬛gravy</p><p>⬛,⬛,⬛,🟩,⬛nanny</p><p>🟨,⬛,⬛,⬛,⬛sassy</p><p>🟨,🟩,🟩,🟨,🟩noobs</p><p>🟩,🟩,🟩,🟩,🟩boons</p>') document.write("<p>TESTS OK");
 
 </script>
