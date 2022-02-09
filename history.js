@@ -19,3 +19,8 @@ w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(Z=
 w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(Z=[...w],p.innerHTML+="<p>"+[...v].map(((e,i)=>[..."⬛🟨🟩"][((z=Z[i]!=e)&&+~(x=Z.indexOf(e))&&Z[x]!=v[x]&&(Z[x]=1))+2*!z]))+v,i.value=v==w?":)":--g?"":":(")}
 
 w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(Z=[...w],p.innerHTML+="<p>"+[...v].map((e,n)=>[..."⬛🟨🟩"][((z=Z[n]!=e)&&~(x=Z.indexOf(e))&&Z[x]!=v[x]&&(Z[x]=1))+2*!z])+v,i.value=v!=w&&--g?"":w)}
+
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(Z=[...w],p.innerHTML+=`
+`+[...v].map((e,n)=>[..."⬛🟨🟩"][((z=Z[n]!=e)&&~(x=Z.indexOf(e))&&Z[x]!=v[x]&&(Z[x]=1))+2*!z])+v,i.value=v!=w&&--g?"":w)}
+
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(p.innerHTML+="<p>"+[...v].map(y=(e,a)=>e!=(c=[...w][a])&&(y[c]=-~y[c],e)).map(((e,a)=>e&&~~y[e]&&!!y[e]--)).map((e=>0===e?"⬛":e?"🟨":"🟩"))+v,i.value=v!=w&&--g?"":w)}

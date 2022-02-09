@@ -1,14 +1,15 @@
-﻿<input id=i><p id=p></p>
+﻿<input id=i><pre id=p></pre>
 
 
 <script>
 
-W = ["boons", "acorn", "gravy", "nanny", "sassy", "noobs"];
+W = ["boons", "acorn", "gravy", "nanny", "sassy", "noobs", "eerie", "teeth"];
 
 
 /* --------- PASTE YOUR CODE HERE ----------*/
 
-// Word to find
+
+
 w = W[new Date % W.length];
 
 // Temp: log the solution
@@ -22,17 +23,16 @@ i.onkeyup = e => {
 
   if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
   
-    Z = [...w];
-    
-    p.innerHTML += "<p>" + [...v].map(
-      
-      (e, i) => [..."⬛🟨🟩"][((z = Z[i] != e) && ~(x=Z.indexOf(e)) && (Z[x] != v[x]) && (Z[x] = 1)) + 2 * !z]
-      
-    ) + v,
+    p.innerHTML += "<p>" + ([...v].map(y=(x,i)=>x!=(c=[...w][i])&&(y[c]=-~y[c],x)).map((x,i)=>x&&~~y[x]&&!!y[x]--)).map(z=>z===0 ? "⬛" : z ? "🟨" : "🟩") + v;
     
     i.value = v != w && --g ? "" : w
   }
 }
+
+
+
+
+
 
 /* -------------- END ---------------------- */
 
@@ -40,6 +40,7 @@ i.onkeyup = e => {
 // TESTS
 
 w = "boons";
+g=6;
 i.value = "acorn";
 i.onkeyup({which:13});
 i.value = "gravy";
@@ -52,7 +53,13 @@ i.value = "noobs";
 i.onkeyup({which:13});
 i.value = "boons";
 i.onkeyup({which:13});
+w = "teeth";
+g=6;
+i.value = "eerie";
+i.onkeyup({which:13});
+i.value = "teeth";
+i.onkeyup({which:13});
 
-if(p.innerHTML == '<p>⬛,⬛,🟩,⬛,🟨acorn</p><p>⬛,⬛,⬛,⬛,⬛gravy</p><p>⬛,⬛,⬛,🟩,⬛nanny</p><p>🟨,⬛,⬛,⬛,⬛sassy</p><p>🟨,🟩,🟩,🟨,🟩noobs</p><p>🟩,🟩,🟩,🟩,🟩boons</p>') document.write("<p>TESTS OK");
+if(p.innerHTML == '<p>⬛,⬛,🟩,⬛,🟨acorn</p><p>⬛,⬛,⬛,⬛,⬛gravy</p><p>⬛,⬛,⬛,🟩,⬛nanny</p><p>🟨,⬛,⬛,⬛,⬛sassy</p><p>🟨,🟩,🟩,🟨,🟩noobs</p><p>🟩,🟩,🟩,🟩,🟩boons</p><p>🟨,🟩,⬛,⬛,⬛eerie</p><p>🟩,🟩,🟩,🟩,🟩teeth</p>') document.write("<p>TESTS OK");
 
 </script>
