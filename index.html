@@ -4,17 +4,17 @@
 <body style="width: 650px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle</center></h2>
-A Wordle clone in 242 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
+A Wordle clone in 229 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
-<pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:630px; position:relative">
+<pre style="background:#222;color:#fff; padding: 10px;word-wrap:break-word;width:630px; position:relative">
 &lt;input id=i>&lt;p id=p>&lt;script>
 W=[ /* words list */ ];
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.
-value)&&(p.innerHTML+="&lt;p>"+[...v].map(y=(e,i)=>e!=(c=[...w][i])&&(y[
-c]=-~y[c],e)).map(((e,i)=>0===(z=e&&~~y[e]&&!!y[e]--)?"⬛":z?"🟨":"🟩"
-))+v,i.value=v!=w&&--g?"":w)}
-&lt;/script><a href="test.html" style="position:absolute;bottom:5px;right:5px;color:#0af">see tests page</a></pre>
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v
+=i.value)&&(a=[...w],p.innerHTML+="&lt;p>"+v.replace(/./g,(s,i)=>s==a
+[i]?a[i]='🟩':s).replace(/\w/g,s=>a[x=a.indexOf(s)]=~x?'🟨':'⬛')+v
+,i.value=v!=w&&--g?"":w)}
+&lt;/script><a href="https://github.com/xem/MiniWordle/blob/gh-pages/index.html#L49-L70" style="position:absolute;bottom:10px;right:100px;color:#0af" _target=_blank>commented source code</a><a href="test.html" style="position:absolute;bottom:10px;right:10px;color:#0af" target=_blank>tests page</a></pre>
 <br>
 <table>
 <tr>
@@ -46,23 +46,66 @@ W = 'which,there,their,about,would,these,other,words,could,write,first,water,aft
 
 <input id=i><pre id=p><script>
 
-// Pick a random word
+// Pick a random word w in the database W
+// For example: w = "boons"
 w = W[new Date % W.length];
 
-// Temp: log the solution
+// Log the solution (this is not present in the golfed code)
 console.log(w);
 
-// 6 guesses
+// Number of guesses: g = 6
 g = 6;
 
-
-// When pressing Enter
+// When pressing a key
 i.onkeyup = e => {
 
+  // Check that the key is "Enter" and the word typed v is in the database
+  // Ensure w is in lowercase for better mobile phone support (this is not present in the golfed code)
+  // For example, v = "acorn"
   if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
   
-    p.innerHTML += "<p>" + ([...v].map(y=(x,i)=>x!=(c=[...w][i])&&(y[c]=-~y[c],x)).map((x,i)=>(z=x&&~~y[x]&&!y[x]--)===0 ? "⬛" : z ? "🟨" : "🟩")) + v;
+    // Copy the solution into a "state" array a
+    a=[...w],
     
+    // Add a new paragraph in the output element p, containing;
+    p.innerHTML += "<p>" + (
+    
+      // The input string (lowercase)
+      v
+        // "Green" pass:
+        .replace(
+        
+          // For each character (we're sure it's all letters)
+          /./g,
+          
+          // If the letter at given position matches the solution...
+          // (s = letter, i = index)
+          (s, i) => s == a[i]
+          
+            // ...then return green a box and "cross out" this letter in the solution
+            ? a[i] = '🟩'
+            
+            // ...else just return the letter back
+            : s
+        )
+        
+        // "Yellow pass"
+        .replace(
+        
+          // Each alphanumeric or underscore (i.e, not green box)
+          /\w/g,
+          
+          // Find the index in the solution and "cross out" the value at that offset
+          // It's a no-op if the .indexOf() returns -1.
+          // Finally, return the yellow box if x !== -1 or the black box otherwise
+          s => a[x=a.indexOf(s)] = ~x ? '🟨' : '⬛'
+        )
+      
+    // Append v (the word that has been typed)
+    ) + v;
+    
+    // Fill the input with the solution if the answer is right, or of too many guesses have been tried
+    // Else, empty the field for the next guess
     i.value = v != w && --g ? "" : w
   }
 }
@@ -75,7 +118,7 @@ i.onkeyup = e => {
 
 <br><br>
 <center><button onclick='location=location'>refresh</button>
-<br><br>2022 ~ golfed by <a href="//twitter.com/maximeeuziere">xem</a>, <a href="//twitter.com/p01">p01</a>, <a href="https://codegolf.stackexchange.com/questions/241723/highlight-a-wordle-guess">l4m2</a></center>
+<br><br>2022 ~ golfed by <a href="//twitter.com/maximeeuziere">xem</a>, <a href="//twitter.com/p01">p01</a>, <a href="//twitter.com/subzey">subzey</a>, <a href="https://codegolf.stackexchange.com/questions/241723/highlight-a-wordle-guess">l4m2</a></center>
 <br><br>
 
 
