@@ -28,29 +28,33 @@ i.onkeyup = e => {
   // For example, v = "acorn"
   if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
   
+    // Copy the solution into a "state" array
+    a=[...w],
     // Add a new paragraph in the output element p
     p.innerHTML += "<p>" + (
-    
-      // Spread v into an array of 5 chars. 
-      // Ex: ["a", "c", "o", "r", "n"]
-      // Then, for each char:
-      [...v].map(
-      
-        // Replace each correct letter with the value "false". Ex: ["a", "c", false, "r", "n"]
-        // Create an index in e foe all the remaining letters of w, and increment its value  for each occurrence of this letter in w.
-        // Ex: if v = "acorn": e["b"] = e["o"] = e["n"] = e["s"] = 1
-        // Ex: if v = "nanny": r["b"] = e["s'] = 1, e["o"] = 2
-        (x,i)=>x!=(c=[...w][i])&&(e[c]=-~e[c],x)
-        
-      // Then, for each value of the updated chars array
-      ).map(
-      
-        // If the letter is not present in e, output a black square
-        // If it's present in e with a value > 0, decrement its value in e and output a yellow square
-        // Else, output a green square
-        (x,i)=>((z=x&&~~e[x]&&!!e[x]--)===0 ? "⬛" : z ? "🟨" : "🟩")
-        
-      )
+      // The input string (already lowercased)
+      v
+        // "Green" pass:
+        .replace(
+          // For each character (we're sure it's all letters)
+          /./g,
+          // (s = letter, i = index)
+          //  If the letter at given position matches the solution...
+          (s, i) => s == a[i]
+            // ...then return green a box and "cross out" this letter in the solution
+            ? a[i] = '🟩'
+            // ...else just return the letter back
+            : s
+        )
+        // "Yellow pass"
+        .replace(
+          // Each alphanumeric or underscore (i.e, not green box)
+          /\w/g,
+          // Find the index in a solution and "cross out" the value at that offset
+          // It's a no-op if the .indexOf() returns -1.
+          // Finally, return the yellow box if x !== -1 or black box otherwise
+          s => a[x=a.indexOf(s)] = ~x ? '🟨' : '⬛'
+        )
       
     // Append the value of v (the word that has been typed)
     ) + v;
@@ -89,6 +93,6 @@ i.onkeyup({which:13});
 i.value = "teeth";
 i.onkeyup({which:13});
 
-if(p.innerHTML == '<p>⬛,⬛,🟩,⬛,🟨acorn</p><p>⬛,⬛,⬛,⬛,⬛gravy</p><p>⬛,⬛,⬛,🟩,⬛nanny</p><p>🟨,⬛,⬛,⬛,⬛sassy</p><p>🟨,🟩,🟩,🟨,🟩noobs</p><p>🟩,🟩,🟩,🟩,🟩boons</p><p>🟨,🟩,⬛,⬛,⬛eerie</p><p>🟩,🟩,🟩,🟩,🟩teeth</p>') document.write("<p>TESTS OK");
+if(p.innerHTML == '<p>⬛⬛🟩⬛🟨acorn</p><p>⬛⬛⬛⬛⬛gravy</p><p>⬛⬛⬛🟩⬛nanny</p><p>🟨⬛⬛⬛⬛sassy</p><p>🟨🟩🟩🟨🟩noobs</p><p>🟩🟩🟩🟩🟩boons</p><p>🟨🟩⬛⬛⬛eerie</p><p>🟩🟩🟩🟩🟩teeth</p>') document.write("<p>TESTS OK");
 
 </script>
