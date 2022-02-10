@@ -10,11 +10,54 @@ W = ["boons", "acorn", "gravy", "nanny", "sassy", "noobs", "eerie", "teeth"];
 
 
 
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.
-value)&&(p.innerHTML+="<p>"+[...v].map(y=(e,i)=>e!=(c=[...w][i])&&(y[
-c]=-~y[c],e)).map(((e,i)=>0===(z=e&&~~y[e]&&!!y[e]--)?"⬛":z?"🟨":"🟩"
-))+v,i.value=v!=w&&--g?"":w)}
+// Pick a random word w in the database W
+// For example: w = "boons"
+w = W[new Date % W.length];
 
+// Log the solution (this is not present in the golfed code)
+console.log(w);
+
+// Number of guesses: g = 6
+g = 6;
+
+// When pressing a key
+i.onkeyup = e => {
+
+  // Check that the key is "Enter" and the word typed v is in the database
+  // Ensure w is in lowercase for better mobile phone support -this is not present in the golfed code)
+  // For example, v = "acorn"
+  if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
+  
+    // Add a new paragraph in the output element p
+    p.innerHTML += "<p>" + (
+    
+      // Spread v into an array of 5 chars. 
+      // Ex: ["a", "c", "o", "r", "n"]
+      // Then, for each char:
+      [...v].map(
+      
+        // Replace each correct letter with the value "false". Ex: ["a", "c", false, "r", "n"]
+        // Create an index in e foe all the remaining letters of w, and increment its value  for each occurrence of this letter in w.
+        // Ex: if v = "acorn": e["b"] = e["o"] = e["n"] = e["s"] = 1
+        // Ex: if v = "nanny": r["b"] = e["s'] = 1, e["o"] = 2
+        (x,i)=>x!=(c=[...w][i])&&(e[c]=-~e[c],x)
+        
+      // Then, for each value of the updated chars array
+      ).map(
+      
+        // If the letter is not present in e, output a black square
+        // If it's present in e with a value > 0, decrement its value in e and output a yellow square
+        // Else, output a green square
+        (x,i)=>((z=x&&~~e[x]&&!!e[x]--)===0 ? "⬛" : z ? "🟨" : "🟩")
+        
+      )
+      
+    // Append the value of v (the word that has been typed)
+    ) + v;
+    
+    i.value = v != w && --g ? "" : w
+  }
+}
 
 
 
