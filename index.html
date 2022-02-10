@@ -7,14 +7,14 @@
 A Wordle clone in 242 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
-<pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:630px;">
+<pre style="background:#222;color:#fff; padding: 15px;word-wrap:break-word;width:630px; position:relative">
 &lt;input id=i>&lt;p id=p>&lt;script>
 W=[ /* words list */ ];
 w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.
 value)&&(p.innerHTML+="&lt;p>"+[...v].map(y=(e,i)=>e!=(c=[...w][i])&&(y[
 c]=-~y[c],e)).map(((e,i)=>0===(z=e&&~~y[e]&&!!y[e]--)?"⬛":z?"🟨":"🟩"
 ))+v,i.value=v!=w&&--g?"":w)}
-&lt;/script></pre>
+&lt;/script><a href="test.html" style="position:absolute;bottom:5px;right:5px;color:#0af">see tests page</a></pre>
 <br>
 <table>
 <tr>
@@ -75,7 +75,7 @@ i.onkeyup = e => {
 
 <br><br>
 <center><button onclick='location=location'>refresh</button>
-<br><br>2022 ~ golfed by <a href="//twitter.com/maximeeuziere">xem</a>, <a href="//twitter.com/p01">p01</a>, <a href="https://codegolf.stackexchange.com/questions/241723/highlight-a-wordle-guess">CGSE</a></center>
+<br><br>2022 ~ golfed by <a href="//twitter.com/maximeeuziere">xem</a>, <a href="//twitter.com/p01">p01</a>, <a href="https://codegolf.stackexchange.com/questions/241723/highlight-a-wordle-guess">l4m2</a></center>
 <br><br>
 
 
