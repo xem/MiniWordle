@@ -10,24 +10,10 @@ W = ["boons", "acorn", "gravy", "nanny", "sassy", "noobs", "eerie", "teeth"];
 
 
 
-w = W[new Date % W.length];
-
-// Temp: log the solution
-console.log(w);
-
-// 6 guesses
-g = 6;
-
-// When pressing Enter
-i.onkeyup = e => {
-
-  if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
-  
-    p.innerHTML += "<p>" + ([...v].map(y=(x,i)=>x!=(c=[...w][i])&&(y[c]=-~y[c],x)).map((x,i)=>x&&~~y[x]&&!!y[x]--)).map(z=>z===0 ? "⬛" : z ? "🟨" : "🟩") + v;
-    
-    i.value = v != w && --g ? "" : w
-  }
-}
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.
+value)&&(p.innerHTML+="<p>"+[...v].map(y=(e,i)=>e!=(c=[...w][i])&&(y[
+c]=-~y[c],e)).map(((e,i)=>0===(z=e&&~~y[e]&&!!y[e]--)?"⬛":z?"🟨":"🟩"
+))+v,i.value=v!=w&&--g?"":w)}
 
 
 
