@@ -10,57 +10,20 @@ W = ["boons", "acorn", "gravy", "nanny", "sassy", "noobs", "eerie", "teeth", "ga
 
 
 
-// Pick a random word w in the database W
-// For example: w = "boons"
-w = W[new Date % W.length];
-
-// Log the solution (this is not present in the golfed code)
-console.log(w);
-
-// Number of guesses: g = 6
-g = 6;
-
-// When pressing a key
-i.onkeyup = e => {
-
-  // Check that the key is "Enter" and the word typed v is in the database
-  // Ensure w is in lowercase for better mobile phone support -this is not present in the golfed code)
-  // For example, v = "acorn"
-  if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
-  
-    // Copy the solution into a "state" array
+w=W[new Date%W.length],
+g=6,
+i.onkeyup=e=>{
+  13==e.which&&W.includes(v=i.value)&&(
     a=[...w],
-    // Add a new paragraph in the output element p
-    p.innerHTML += "<p>" + (
-      // The input string (already lowercased)
-      v
-        // "Green" pass:
-        .replace(
-          // For each character (we're sure it's all letters)
-          /./g,
-          // (s = letter, i = index)
-          //  If the letter at given position matches the solution...
-          (s, i) => s == a[i]
-            // ...then return green a box and "cross out" this letter in the solution
-            ? a[i] = '🟩'
-            // ...else just return the letter back
-            : s
-        )
-        // "Yellow pass"
-        .replace(
-          // Each alphanumeric or underscore (i.e, not green box)
-          /\w/g,
-          // Find the index in a solution and "cross out" the value at that offset
-          // It's a no-op if the .indexOf() returns -1.
-          // Finally, return the yellow box if x !== -1 or black box otherwise
-          s => a[x=a.indexOf(s)] = ~x ? '🟨' : '⬛'
-        )
-      
-    // Append the value of v (the word that has been typed)
-    ) + v;
-    
-    i.value = v != w && --g ? "" : w
-  }
+    p.innerHTML+=`
+`+v.replace(
+      /./g,
+      (s,i)=>s==a[i]?a[i]='🟩':s).replace(
+        /\w/g,
+        s=>a[x=a.indexOf(s)]=~x?'🟨':'⬛'
+      )+v,
+    i.value=v!=w&&--g?"":w
+  )
 }
 
 
@@ -95,6 +58,6 @@ i.onkeyup({which:13});
 i.value = "teeth";
 i.onkeyup({which:13});
 
-if(p.innerHTML == '<p>⬛⬛🟩⬛🟨acorn</p><p>⬛⬛⬛⬛⬛gravy</p><p>⬛⬛⬛🟩⬛nanny</p><p>🟨⬛⬛⬛⬛sassy</p><p>⬛⬛⬛⬛🟩gases</p><p>🟨🟩🟩🟨🟩noobs</p><p>🟩🟩🟩🟩🟩boons</p><p>🟨🟩⬛⬛⬛eerie</p><p>🟩🟩🟩🟩🟩teeth</p>') document.write("<p>TESTS OK");
+if(p.innerHTML == '\n⬛⬛🟩⬛🟨acorn\n⬛⬛⬛⬛⬛gravy\n⬛⬛⬛🟩⬛nanny\n🟨⬛⬛⬛⬛sassy\n⬛⬛⬛⬛🟩gases\n🟨🟩🟩🟨🟩noobs\n🟩🟩🟩🟩🟩boons\n🟨🟩⬛⬛⬛eerie\n🟩🟩🟩🟩🟩teeth') document.write("<p>TESTS OK");
 
 </script>

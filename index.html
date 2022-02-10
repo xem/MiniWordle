@@ -4,16 +4,16 @@
 <body style="width: 650px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle</center></h2>
-A Wordle clone in 229 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
+A Wordle clone in 228 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
 <pre style="background:#222;color:#fff; padding: 10px;word-wrap:break-word;width:630px; position:relative">
 &lt;input id=i>&lt;p id=p>&lt;script>
 W=[ /* words list */ ];
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v
-=i.value)&&(a=[...w],p.innerHTML+="&lt;p>"+v.replace(/./g,(s,i)=>s==a
-[i]?a[i]='🟩':s).replace(/\w/g,s=>a[x=a.indexOf(s)]=~x?'🟨':'⬛')+v
-,i.value=v!=w&&--g?"":w)}
+w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&
+(a=[...w],p.innerHTML+=`
+`+v.replace(/./g,(s,i)=>s==a[i]?a[i]='🟩':s).replace(/\w/g,s=>a[x=a.indexOf(s)
+]=~x?'🟨':'⬛')+v,i.value=v!=w&&--g?"":w)}
 &lt;/script><a href="https://github.com/xem/MiniWordle/blob/gh-pages/index.html#L49-L70" style="position:absolute;bottom:10px;right:100px;color:#0af" _target=_blank>commented source code</a><a href="test.html" style="position:absolute;bottom:10px;right:10px;color:#0af" target=_blank>tests page</a></pre>
 <br>
 <table>
@@ -68,7 +68,8 @@ i.onkeyup = e => {
     a=[...w],
     
     // Add a new paragraph in the output element p, containing;
-    p.innerHTML += "<p>" + (
+    p.innerHTML += `
+`    + (
     
       // The input string (lowercase)
       v
