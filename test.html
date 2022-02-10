@@ -12,16 +12,16 @@ W = ["boons", "acorn", "gravy", "nanny", "sassy", "noobs", "eerie", "teeth", "ga
 
 w=W[new Date%W.length],
 g=6,
-i.onkeyup=e=>{
-  13==e.which&&W.includes(v=i.value)&&(
+onkeyup=e=>{
+  e.which==13*W.includes(v=i.value)&&(
     a=[...w],
     p.innerHTML+=`
-`+v.replace(
-      /./g,
-      (s,i)=>s==a[i]?a[i]='🟩':s).replace(
-        /\w/g,
-        s=>a[x=a.indexOf(s)]=~x?'🟨':'⬛'
-      )+v,
+`   +[...v].map(
+      (s,i)=>s==a[i]?a[i]='🟩':s
+    ).map(
+      s=>s<"~"?(a[x=a.indexOf(s)]=~x?'🟨':'⬛'):s
+    )
+    +v,
     i.value=v!=w&&--g?"":w
   )
 }
@@ -38,26 +38,26 @@ i.onkeyup=e=>{
 w = "boons";
 g=8;
 i.value = "acorn";
-i.onkeyup({which:13});
+onkeyup({which:13});
 i.value = "gravy";
-i.onkeyup({which:13});
+onkeyup({which:13});
 i.value = "nanny";
-i.onkeyup({which:13});
+onkeyup({which:13});
 i.value = "sassy";
-i.onkeyup({which:13});
+onkeyup({which:13});
 i.value = "gases";
-i.onkeyup({which:13});
+onkeyup({which:13});
 i.value = "noobs";
-i.onkeyup({which:13});
+onkeyup({which:13});
 i.value = "boons";
-i.onkeyup({which:13});
+onkeyup({which:13});
 w = "teeth";
 g=6;
 i.value = "eerie";
-i.onkeyup({which:13});
+onkeyup({which:13});
 i.value = "teeth";
-i.onkeyup({which:13});
+onkeyup({which:13});
 
-if(p.innerHTML == '\n⬛⬛🟩⬛🟨acorn\n⬛⬛⬛⬛⬛gravy\n⬛⬛⬛🟩⬛nanny\n🟨⬛⬛⬛⬛sassy\n⬛⬛⬛⬛🟩gases\n🟨🟩🟩🟨🟩noobs\n🟩🟩🟩🟩🟩boons\n🟨🟩⬛⬛⬛eerie\n🟩🟩🟩🟩🟩teeth') document.write("<p>TESTS OK");
+if(p.innerHTML == '\n⬛,⬛,🟩,⬛,🟨acorn\n⬛,⬛,⬛,⬛,⬛gravy\n⬛,⬛,⬛,🟩,⬛nanny\n🟨,⬛,⬛,⬛,⬛sassy\n⬛,⬛,⬛,⬛,🟩gases\n🟨,🟩,🟩,🟨,🟩noobs\n🟩,🟩,🟩,🟩,🟩boons\n🟨,🟩,⬛,⬛,⬛eerie\n🟩,🟩,🟩,🟩,🟩teeth') document.write("<p>TESTS OK");
 
 </script>

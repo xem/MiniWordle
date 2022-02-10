@@ -1,2 +1,2 @@
-w=W[new Date%W.length],g=6,i.onkeyup=e=>{13==e.which&&W.includes(v=i.value)&&(a=[...w],p.innerHTML+=`
-`+v.replace(/./g,(s,i)=>s==a[i]?a[i]='🟩':s).replace(/\w/g,s=>a[x=a.indexOf(s)]=~x?'🟨':'⬛')+v,i.value=v!=w&&--g?"":w)}
+w=W[new Date%W.length],g=6,onkeyup=e=>{e.which==13*W.includes(v=i.value)&&(a=[...w],p.innerHTML+=`
+`+[...v].map(((e,n)=>e==a[n]?a[n]="🟩":e)).map((e=>e<"~"?a[x=a.indexOf(e)]=~x?"🟨":"⬛":e))+v,i.value=v!=w&&--g?"":w)}
