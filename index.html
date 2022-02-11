@@ -4,16 +4,16 @@
 <body style="width: 650px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle</center></h2>
-A Wordle clone in 218 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
+A Wordle clone in 214 bytes of JS (not counting the words list) <a href="https://github.com/xem/MiniWordle">Fork me on Github</a>
 
 <br>
 <pre style="background:#222;color:#fff; padding: 10px;word-wrap:break-word;width:630px; position:relative">
 &lt;input id=i>&lt;p id=p>&lt;script>
 W=[ /* words list */ ];
-w=W[new Date%W.length],g=6,onkeyup=e=>{e.which==13*W.
-includes(v=i.value)&&(a=[...w],p.innerHTML+=`
-`+[...v].map((e,n)=>e==a[n]?a[n]="🟩":e).map(e=>e&lt;"~"?
-a[x=a.indexOf(e)]=~x?"🟨":"⬛":e)+v,i.value=v!=w&&--g?"":w)}
+w=W[new Date%W.length],g=6,onkeyup=e=>{e.which==13*W.includes
+(v=i.value)&&(a=[...w],p.innerHTML+=`
+`+[...v].map((e,n)=>e==a[n]?a[n]=0:e).map(e=>e?a[x=a.indexOf(e)
+]=~x?"🟨":"⬛":"🟩")+v,i.value=v!=w&&--g?"":w)}
 &lt;/script>
 
 <a href="https://github.com/xem/MiniWordle/blob/gh-pages/index.html#L50-L108" style="position:absolute;bottom:10px;right:100px;color:#0af" _target=_blank>commented source code</a><a href="test.html" style="position:absolute;bottom:10px;right:10px;color:#0af" target=_blank>tests page</a></pre>
@@ -79,19 +79,21 @@ onkeyup = e => {
       // Take the input string v converted into an array of chars
       [...v].map(
       
-        // Replace every correct letter with a green square
-        // The same letter is also replaced by a green square in the array a
-        (e, n) => e == a[n] ? a[n] = "🟩" : e
+        // Replace every correct letter with a 0
+        // The same letter is also replaced by a 0 in the array a
+        (e, n) => e == a[n] ? a[n] = 0 : e
       )
       
       // Take the updated [...v] array
       .map(
       
-        // Take every ascii char (e < "~") left in this array
-        // If e is present in a: replace it with a yellow square and put a yellow square in a where the letter has been found (here, "~x" means "x != -1")
-        // If e is not present in a: replace it with a black square
-        // If e is not ASCII, it means it's a green square, so we keep it like that
-        e => e < "~" ? a[x=a.indexOf(e)] = ~x ? "🟨" : "⬛" : e
+        // Take every value e in this array
+        // If e is not 0:
+        // - if the letter e is found in a at the index x, replace e and a[x] with a yellow square
+        // - if e is not found in a, replace e with a black square
+        // If e is equal to 0, replace it with a green square
+        // NB: "~x" means "x != -1", ie. e was found in a
+        e => e ? a[x=a.indexOf(e)] = ~x ? "🟨" : "⬛" : "🟩"
       )
 
       // The final [...v] array is added into the paragraph p
