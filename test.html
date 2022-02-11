@@ -9,22 +9,8 @@ W = ["boons", "acorn", "gravy", "nanny", "sassy", "noobs", "eerie", "teeth", "ga
 /* --------- PASTE YOUR CODE HERE ----------*/
 
 
-
-w=W[new Date%W.length],
-g=6,
-onkeyup=e=>{
-  e.which==13*W.includes(v=i.value)&&(
-    a=[...w],
-    p.innerHTML+=`
-`   +[...v].map(
-      (s,i)=>s==a[i]?a[i]='🟩':s
-    ).map(
-      s=>s<"~"?(a[x=a.indexOf(s)]=~x?'🟨':'⬛'):s
-    )
-    +v,
-    i.value=v!=w&&--g?"":w
-  )
-}
+w=W[new Date%W.length],g=6,onkeyup=e=>{e.which==13*W.includes(v=i.value)&&(a=[...w],p.innerHTML+=`
+`+[...v].map((e,n)=>e==a[n]?a[n]="🟩":e).map(e=>e<"~"?a[x=a.indexOf(e)]=~x?"🟨":"⬛":e)+v,i.value=v!=w&&--g?"":w)}
 
 
 
