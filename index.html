@@ -16,7 +16,7 @@ includes(v=i.value)&&(a=[...w],p.innerHTML+=`
 a[x=a.indexOf(e)]=~x?"🟨":"⬛":e)+v,i.value=v!=w&&--g?"":w)}
 &lt;/script>
 
-<a href="https://github.com/xem/MiniWordle/blob/gh-pages/index.html#L49-L70" style="position:absolute;bottom:10px;right:100px;color:#0af" _target=_blank>commented source code</a><a href="test.html" style="position:absolute;bottom:10px;right:10px;color:#0af" target=_blank>tests page</a></pre>
+<a href="https://github.com/xem/MiniWordle/blob/gh-pages/index.html#L50-L108" style="position:absolute;bottom:10px;right:100px;color:#0af" _target=_blank>commented source code</a><a href="test.html" style="position:absolute;bottom:10px;right:10px;color:#0af" target=_blank>tests page</a></pre>
 <br>
 <table>
 <tr>
@@ -59,58 +59,51 @@ console.log(w);
 g = 6;
 
 // When pressing a key
-i.onkeyup = e => {
+onkeyup = e => {
 
-  // Check that the key is "Enter" and the word typed v is in the database
+  // Check that the key is "Enter" (13) and the word typed v is in the database (13*true == 13)
   // Ensure w is in lowercase for better mobile phone support (this is not present in the golfed code)
   // For example, v = "acorn"
-  if(e.which == 13 && W.includes(v = i.value.toLowerCase())){
-  
+  e.which == 13 * W.includes(v = i.value.toLowerCase()) && (
+
     // Copy the solution into a "state" array a
     a=[...w],
     
-    // Add a new paragraph in the output element p, containing;
-    p.innerHTML += `
-`    + (
+    // Add a new paragraph in the output element p, containing: 
+    p.innerHTML += 
     
-      // The input string (lowercase)
-      v
-        // "Green" pass:
-        .replace(
-        
-          // For each character (we're sure it's all letters)
-          /./g,
-          
-          // If the letter at given position matches the solution...
-          // (s = letter, i = index)
-          (s, i) => s == a[i]
-          
-            // ...then return green a box and "cross out" this letter in the solution
-            ? a[i] = '🟩'
-            
-            // ...else just return the letter back
-            : s
-        )
-        
-        // "Yellow pass"
-        .replace(
-        
-          // Each alphanumeric or underscore (i.e, not green box)
-          /\w/g,
-          
-          // Find the index in the solution and "cross out" the value at that offset
-          // It's a no-op if the .indexOf() returns -1.
-          // Finally, return the yellow box if x !== -1 or the black box otherwise
-          s => a[x=a.indexOf(s)] = ~x ? '🟨' : '⬛'
-        )
+      // A line break
+`
+`    +
+
+      // Take the input string v converted into an array of chars
+      [...v].map(
       
-    // Append v (the word that has been typed)
-    ) + v;
+        // Replace every correct letter with a green square
+        // The same letter is also replaced by a green square in the array a
+        (e, n) => e == a[n] ? a[n] = "🟩" : e
+      )
+      
+      // Take the updated [...v] array
+      .map(
+      
+        // Take every ascii char (e < "~") left in this array
+        // If e is present in a: replace it with a yellow square and put a yellow square in a where the letter has been found (here, "~x" means "x != -1")
+        // If e is not present in a: replace it with a black square
+        // If e is not ASCII, it means it's a green square, so we keep it like that
+        e => e < "~" ? a[x=a.indexOf(e)] = ~x ? "🟨" : "⬛" : e
+      )
+
+      // The final [...v] array is added into the paragraph p
+      
+      // Append the typed word v
+      + v,
     
     // Fill the input with the solution if the answer is right, or of too many guesses have been tried
     // Else, empty the field for the next guess
+    // If the guess is wrong, the number of remaining guesses is decremented
     i.value = v != w && --g ? "" : w
-  }
+  )
 }
 
 
