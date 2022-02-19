@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mini Wordle</title>
-<body style="width: 650px;margin: 0 auto;padding:0 10px;">
+<body style="width: 300px;margin: 0 auto;padding:0 10px;">
 <tt>
 <h2><center>Mini Wordle of the day!</center></h2>
 <center><p>This is the word n°<span id=wordn></span></center>
@@ -30,14 +30,7 @@ createdOn.setHours(0,0,0,0);
 today.setHours(0,0,0,0)
 
 var diff = (+today - +createdOn)/msInDay
-console.log(diff)
-
-// Pick a random word w in the database W
-// For example: w = "boons"
 w = W[(1000+diff*3)%(W.length-1)];
-
-// Log the solution (this is not present in the golfed code)
-console.log(w);
 wordn.innerHTML = diff;
 
 // Number of guesses: g = 6
