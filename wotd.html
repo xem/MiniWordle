@@ -14,7 +14,8 @@ W = 'which,there,their,about,would,these,other,words,could,write,first,water,aft
 
 <center>
 
-<input id=i spellcheck=false><pre id=p style="height:200px">
+<input id=i spellcheck=false> <button id=go>GO</button>
+<pre id=p style="height:200px">
 
 </center>
 
@@ -36,6 +37,8 @@ wordn.innerHTML = diff;
 // Number of guesses: g = 6
 g = 6;
 
+oninput = e => i.value = i.value.toUpperCase();
+
 // When pressing a key
 onkeyup = e => {
 
@@ -48,7 +51,7 @@ onkeyup = e => {
     a=[...w],
     
     // Add a new paragraph in the output element p, containing: 
-    p.innerHTML += 
+    p.insertAdjacentHTML("beforeEnd", 
     
 
       // Take the input string v converted into an array of chars
@@ -74,9 +77,60 @@ onkeyup = e => {
       // The final [...v] array is added into the paragraph p
       
       // Append the typed word v
-      + "  " + v
+      + "  " + v.toUpperCase()
       
-      + "<br><br>",
+      + "<br><br>"
+    ),
+    
+    // Fill the input with the solution if the answer is right, or of too many guesses have been tried
+    // Else, empty the field for the next guess
+    // If the guess is wrong, the number of remaining guesses is decremented
+    i.value = v != w && --g ? "" : w
+  )
+}
+
+// When pressing a key
+go.onclick = e => {
+
+  // Check that the key is "Enter" (13) and the word typed v is in the database (13*true == 13)
+  // Ensure w is in lowercase for better mobile phone support (this is not present in the golfed code)
+  // For example, v = "acorn"
+  W.includes(v = i.value.toLowerCase()) && (
+
+    // Copy the solution into a "state" array a
+    a=[...w],
+    
+    // Add a new paragraph in the output element p, containing: 
+    p.insertAdjacentHTML("beforeEnd", 
+    
+
+      // Take the input string v converted into an array of chars
+      [...v].map(
+      
+        // Replace every correct letter with a 0
+        // The same letter is also replaced by a 0 in the array a
+        (e, n) => e == a[n] ? a[n] = 0 : e
+      )
+      
+      // Take the updated [...v] array
+      .map(
+      
+        // Take every value e in this array
+        // If e is not 0:
+        // - if the letter e is found in a at the index x, replace e and a[x] with a yellow square
+        // - if e is not found in a, replace e with a black square
+        // If e is equal to 0, replace it with a green square
+        // NB: "~x" means "x != -1", ie. e was found in a
+        e => e ? a[x=a.indexOf(e)] = ~x ? "🟨" : "⬛" : "🟩"
+      ).join(" ")
+
+      // The final [...v] array is added into the paragraph p
+      
+      // Append the typed word v
+      + "  " + v.toUpperCase()
+      
+      + "<br><br>"
+    ),
     
     // Fill the input with the solution if the answer is right, or of too many guesses have been tried
     // Else, empty the field for the next guess
