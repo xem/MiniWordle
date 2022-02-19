@@ -15,6 +15,8 @@ W = 'WHICH,THERE,THEIR,ABOUT,WOULD,THESE,OTHER,WORDS,COULD,WRITE,FIRST,WATER,AFT
 <center>
 
 <input id=i spellcheck=false> <button id=go>GO</button>
+<button id=share style="display: none; margin:20px;">Share my score</button>
+<textarea id="sharet" style="display: none; margin:20px;" cols=50 rows=15></textarea>
 <pre id=p style="height:200px">
 
 </center>
@@ -87,7 +89,7 @@ onkeyup = e => {
     // Fill the input with the solution if the answer is right, or of too many guesses have been tried
     // Else, empty the field for the next guess
     // If the guess is wrong, the number of remaining guesses is decremented
-    i.value = v != w && --g ? "" : ("Correct answer: " + w.toUpperCase(go.remove()))
+    i.value = v != w && --g ? "" : ("Correct answer: " + w.toUpperCase(go.remove(),share.style.display="inline"))
   )
 }
 
@@ -137,12 +139,18 @@ go.onclick = e => {
     // Fill the input with the solution if the answer is right, or of too many guesses have been tried
     // Else, empty the field for the next guess
     // If the guess is wrong, the number of remaining guesses is decremented
-    i.value = v != w && --g ? "" : ("Correct answer: " + w.toUpperCase(go.remove()))
+    i.value = v != w && --g ? "" : ("Correct answer: " + w.toUpperCase(go.remove(),share.style.display="inline"))
   )
 }
 
+share.onclick = () => {
+  sharet.style.display = "inline-block";
+  sharet.value = "MiniWordle #" + diff + "\n" + p.innerText.replace(/[A-Z ]/g,"").replace(/\n\n/g,"\n") + "\nPlay here: https://xem.github.io/MiniWordle/wotd.html";
+  window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(staret.value));
+}
 
 </script>
 
 <br><br>
-<center><button onclick='location=location'>refresh</button> <button onclick='location="index.html"'>Back to Home</button>
+<center>
+<button onclick='location=location'>refresh</button> <button onclick='location="index.html"'>Back to Home</button>
