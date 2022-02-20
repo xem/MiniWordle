@@ -146,7 +146,7 @@ go.onclick = e => {
 share.onclick = () => {
   sharet.style.display = "inline-block";
   sharet.value = "MiniWordle #" + diff + "\n" + p.innerText.replace(/[A-Z ]/g,"").replace(/\n\n/g,"\n") + "\nPlay here: https://xem.github.io/MiniWordle/wotd.html";
-  window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(staret.value));
+  window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(sharet.value));
 }
 
 </script>
