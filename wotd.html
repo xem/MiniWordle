@@ -49,7 +49,7 @@ onkeyup = e => {
   // Check that the key is "Enter" (13) and the word typed v is in the database (13*true == 13)
   // Ensure w is in lowercase for better mobile phone support (this is not present in the golfed code)
   // For example, v = "acorn"
-  e.which == 13 * W.includes(v = i.value.toUpperCase()) && (
+  if(e.which == 13 * W.includes(v = i.value.toUpperCase())){
 
     // Copy the solution into a "state" array a
     a=[...w],
@@ -84,13 +84,21 @@ onkeyup = e => {
       + "  " + v.toUpperCase()
       
       + "<br><br>"
-    ),
+    );
     
     // Fill the input with the solution if the answer is right, or of too many guesses have been tried
     // Else, empty the field for the next guess
     // If the guess is wrong, the number of remaining guesses is decremented
-    i.value = v != w && --g ? "" : ("Correct answer: " + w.toUpperCase(go.remove(),share.style.display="inline"))
-  )
+    if(v != w && --g) i.value = ""
+    else {
+      console.log(sharet);
+      i.value = "Correct answer: " + w.toUpperCase();
+      go.remove();
+      share.style.display="inline";
+      sharet.style.display = "inline-block";
+      sharet.value = "MiniWordle #" + diff + "\n" + p.innerText.replace(/[A-Z ]/g,"").replace(/\n\n/g,"\n") + "\nPlay here: https://xem.github.io/MiniWordle/wotd.html"
+    }
+  }
 }
 
 // When pressing a key
@@ -99,7 +107,7 @@ go.onclick = e => {
   // Check that the key is "Enter" (13) and the word typed v is in the database (13*true == 13)
   // Ensure w is in lowercase for better mobile phone support (this is not present in the golfed code)
   // For example, v = "acorn"
-  W.includes(v = i.value.toUpperCase()) && (
+  if(W.includes(v = i.value.toUpperCase())){
 
     // Copy the solution into a "state" array a
     a=[...w],
@@ -134,18 +142,24 @@ go.onclick = e => {
       + "  " + v.toUpperCase()
       
       + "<br><br>"
-    ),
+    );
     
     // Fill the input with the solution if the answer is right, or of too many guesses have been tried
     // Else, empty the field for the next guess
     // If the guess is wrong, the number of remaining guesses is decremented
-    i.value = v != w && --g ? "" : ("Correct answer: " + w.toUpperCase(go.remove(),share.style.display="inline"))
-  )
+    if(v != w && --g) i.value = ""
+    else {
+      console.log(sharet);
+      i.value = "Correct answer: " + w.toUpperCase();
+      go.remove();
+      share.style.display="inline";
+      sharet.style.display = "inline-block";
+      sharet.value = "MiniWordle #" + diff + "\n" + p.innerText.replace(/[A-Z ]/g,"").replace(/\n\n/g,"\n") + "\nPlay here: https://xem.github.io/MiniWordle/wotd.html"
+    }
+  }
 }
 
 share.onclick = () => {
-  sharet.style.display = "inline-block";
-  sharet.value = "MiniWordle #" + diff + "\n" + p.innerText.replace(/[A-Z ]/g,"").replace(/\n\n/g,"\n") + "\nPlay here: https://xem.github.io/MiniWordle/wotd.html";
   window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(sharet.value));
 }
 
