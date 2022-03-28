@@ -29,8 +29,8 @@ var today = new Date();
 var createdOn = new Date(d);
 var msInDay = 24 * 60 * 60 * 1000;
 
-createdOn.setHours(0,0,0,0);
-today.setHours(0,0,0,0)
+createdOn.setHours(1,0,0,0);
+today.setHours(13,0,0,0)
 
 var diff = ~~((+today - +createdOn)/msInDay)
 w = W[(1000+diff*3)%(W.length-1)].toUpperCase();
