@@ -98,7 +98,7 @@ onkeyup = e => {
       go.remove();
       share.style.display="inline";
       sharet.style.display = "inline-block";
-      sharet.value = "J'ai trouvé le mot du jour à MiniWordle!\n" + p.innerText.replace(/[A-Z ]/g,"").replace(/\n\n/g,"\n") + "\nhttps://xem.github.io/MiniWordle/motdujour.html"
+      sharet.value = "J'ai " + (g ? "" : "pas ") + "trouvé le mot du jour à MiniWordle!\n" + p.innerText.replace(/[A-Z ]/g,"").replace(/\n\n/g,"\n") + "\nhttps://xem.github.io/MiniWordle/motdujour.html"
     }
   }
 }
@@ -156,7 +156,7 @@ go.onclick = e => {
       go.remove();
       share.style.display="inline";
       sharet.style.display = "inline-block";
-      sharet.value = "J'ai pas trouvé le mot du jour à MiniWordle!\n" + p.innerText.replace(/[A-Z ]/g,"").replace(/\n\n/g,"\n") + "\nhttps://xem.github.io/MiniWordle/motdujour.html"
+      sharet.value = "J'ai " + (g ? "" : "pas ") + "trouvé le mot du jour à MiniWordle!\n" + p.innerText.replace(/[A-Z ]/g,"").replace(/\n\n/g,"\n") + "\nhttps://xem.github.io/MiniWordle/motdujour.html"
     }
   }
 }
