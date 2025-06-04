@@ -35,7 +35,7 @@ createdOn.setHours(1,0,0,0);
 today.setHours(13,0,0,0)
 
 var diff = ~~((+today - +createdOn)/msInDay)
-w = W[(1000+diff*3)%(W.length-1)].toUpperCase();
+w = W[(1000+diff*300)%(W.length-1)].toUpperCase();
 wordn.innerHTML = diff + 1;
 
 // Number of guesses: g = 6
